@@ -1,9 +1,9 @@
 
 
 
-#include<iostream>
-using namespace std;
 
+#include<stdio.h>
+#include<stdlib.h>
 struct process
 {
 	char process_name;
@@ -36,11 +36,11 @@ int main()
 	int i, time = 0, burst_time = 0, largest;
 	char c;
         float wait_time = 0, turnaround_time = 0, average_waiting_time, average_turnaround_time;
-//	printf("\nEnter Total Number of Processes:\t");
- //	scanf("%d", &limit);
+	printf("\nEnter Total Number of Processes:\t");
+    scanf("%d", &limit);
  	limit=4;
  	
- /*	for(i = 0, c = 'A'; i < limit; i++, c++)
+ for(i = 0, c = 'A'; i < limit; i++, c++)
  	{
  		process_queue[i].process_name = c;
 		printf("\nEnter Details For Process[%C]:\n", process_queue[i].process_name);
@@ -52,7 +52,7 @@ int main()
 		scanf("%d", &process_queue[i].priority);
  		process_queue[i].status = 0;
  		burst_time = burst_time + process_queue[i].burst_time;
-	}*/
+	}
 	process_queue[1].arrival_time=4;
 	process_queue[1].burst_time=2;
 	burst_time = burst_time + process_queue[1].burst_time;
@@ -78,15 +78,15 @@ int main()
 	burst_time = burst_time + process_queue[4].burst_time;
 	
 	
-	cout<<"enter the priorities\n";
+	printf("enter the priorities\n");
 	for(i=1;i<=limit;i++)
 	{
-		cin>>process_queue[i].priority;
+		scanf("%d",process_queue[i].priority);
 	}
 	Arrival_Time_Sorting();
 	process_queue[9].priority = -9999;
-	cout<<"\nProcess Name\tArrival Time\tBurst Time\tPriority\tWaiting Time";
-  	for(time = process_queue[1].arrival_time; time < burst_time;)
+	printf("\nProcess Name\tArrival Time\tBurst Time\tPriority\tWaiting Time");
+  	if(time = process_queue[1].arrival_time && time < burst_time);
   	{
     		largest = 9;
     		for(i = 1; i <= limit; i++)
@@ -103,10 +103,15 @@ int main()
     		process_queue[largest].status = 1;
     		wait_time = wait_time + process_queue[largest].waiting_time;
 		turnaround_time = turnaround_time + process_queue[largest].turnaround_time;
-		cout<<"\n"<<process_queue[largest].process_name<<"\t\t"<<process_queue[largest].arrival_time<<"\t\t"<<process_queue[largest].burst_time<<"\t\t"<<process_queue[largest].priority<<"\t\t"<<process_queue[largest].waiting_time;
+		printf("%d\n",process_queue[largest].process_name);
+		printf("%d\t\t",process_queue[largest].arrival_time);
+		printf("%d\t\t",process_queue[largest].burst_time);
+		printf("%d\t\t",process_queue[largest].priority);
+		printf("%d\t\t",process_queue[largest].waiting_time);
 	}
 	average_waiting_time = wait_time / limit;
 	average_turnaround_time = turnaround_time / limit;
-	cout<<"\n\nAverage waiting time:\t"<<average_waiting_time<<"\n";
-	cout<<"Average Turnaround Time:\t"<<average_turnaround_time<<"\n";
+	printf("\n\nAverage waiting time:%d\t",average_waiting_time);
+	printf("Average Turnaround Time:%d\t",average_turnaround_time);
 }
+
