@@ -1,4 +1,6 @@
 
+
+
 #include<iostream>
 using namespace std;
 
@@ -76,3 +78,35 @@ int main()
 	burst_time = burst_time + process_queue[4].burst_time;
 	
 	
+	cout<<"enter the priorities\n";
+	for(i=1;i<=limit;i++)
+	{
+		cin>>process_queue[i].priority;
+	}
+	Arrival_Time_Sorting();
+	process_queue[9].priority = -9999;
+	cout<<"\nProcess Name\tArrival Time\tBurst Time\tPriority\tWaiting Time";
+  	for(time = process_queue[1].arrival_time; time < burst_time;)
+  	{
+    		largest = 9;
+    		for(i = 1; i <= limit; i++)
+    		{
+      			if(process_queue[i].arrival_time <= time && process_queue[i].status != 1 && process_queue[i].priority > process_queue[largest].priority)
+        		{
+				largest = i;
+			}
+    		}
+      		time = time + process_queue[largest].burst_time;
+  		process_queue[largest].ct = time;
+          	process_queue[largest].waiting_time = process_queue[largest].ct - process_queue[largest].arrival_time - process_queue[largest].burst_time;
+     		process_queue[largest].turnaround_time = process_queue[largest].ct - process_queue[largest].arrival_time;
+    		process_queue[largest].status = 1;
+    		wait_time = wait_time + process_queue[largest].waiting_time;
+		turnaround_time = turnaround_time + process_queue[largest].turnaround_time;
+		cout<<"\n"<<process_queue[largest].process_name<<"\t\t"<<process_queue[largest].arrival_time<<"\t\t"<<process_queue[largest].burst_time<<"\t\t"<<process_queue[largest].priority<<"\t\t"<<process_queue[largest].waiting_time;
+	}
+	average_waiting_time = wait_time / limit;
+	average_turnaround_time = turnaround_time / limit;
+	cout<<"\n\nAverage waiting time:\t"<<average_waiting_time<<"\n";
+	cout<<"Average Turnaround Time:\t"<<average_turnaround_time<<"\n";
+}
